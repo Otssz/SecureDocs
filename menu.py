@@ -1,19 +1,6 @@
-import random
-
 from criptografias import *
-from criptografias.ataques import *
 
 MENSAGEM = "TRANSFERIR DOCUMENTO PARA SERVIDOR CENTRAL"
-
-CONTRATO = (
-    "CONTRATO DE PRESTAÇÃO DE SERVIÇOS. A TechSecure, chamada de contratante, e a empresa "
-    "parceira, chamada de contratada, acordam as cláusulas a seguir. A contratada fará a guarda "
-    "e a transferência dos documentos da contratante para o servidor central e manterá sigilo "
-    "sobre todas as informações recebidas. O valor mensal acordado será pago até o quinto dia "
-    "útil de cada mês. Qualquer alteração neste contrato deverá ser aprovada por escrito pelas "
-    "duas partes. A quebra de sigilo, a perda ou a alteração de documentos sem autorização "
-    "causará multa e a rescisão imediata deste contrato."
-)
 
 MENU = """
 ============================================================
@@ -28,11 +15,6 @@ MENU = """
     6 - Transposição
     7 - Fluxo
     8 - A mensagem em todas as cifras
-
-  ATAQUES
-    9 - Força bruta na César
-   10 - Força bruta na Afim
-   11 - Análise de frequência na César
 
     0 - Sair
 """
@@ -164,77 +146,6 @@ def todas():
     print("  Fluxo (2026)           :", cifrar_fluxo(texto, 2026))
 
 
-def ataque_cesar():
-    titulo("ATAQUE: força bruta na César (26 chaves)")
-    texto = perguntar("Texto", MENSAGEM)
-    chave_secreta = random.randint(1, 25)
-    cifrado = cifrar_cesar(texto, chave_secreta)
-    print("\n  O invasor interceptou:", cifrado, "\n")
-
-    tentativas = forca_bruta_cesar(cifrado)
-    melhor_chave = tentativas[0][1]
-
-    for chave in range(26):
-        marca = ""
-
-        if chave == melhor_chave:
-            marca = "  <-- parece português!"
-
-        print(f"  chave {chave:2}: {decifrar_cesar(cifrado, chave)}{marca}")
-
-    print("\n  Chave encontrada:", melhor_chave)
-    print("  Chave sorteada  :", chave_secreta)
-
-
-def ataque_afim():
-    titulo("ATAQUE: força bruta na Afim (12 x 26 = 312 chaves)")
-    texto = perguntar("Texto", MENSAGEM)
-    a = random.choice(chaves_validas_afim())
-    b = random.randint(0, 25)
-    cifrado = cifrar_afim(texto, a, b)
-    print("\n  O invasor interceptou:", cifrado)
-
-    tentativas = forca_bruta_afim(cifrado)
-    print("  Chaves testadas:", len(tentativas))
-    print("\n  As 3 tentativas mais parecidas com português (menor pontuação):")
-
-    for pontuacao, chave, decifrado in tentativas[:3]:
-        print(f"  a, b = {str(chave):9} pontuação {pontuacao:6.1f}  {decifrado}")
-
-    print("\n  Chave encontrada:", tentativas[0][1])
-    print("  Chave sorteada  :", (a, b))
-
-
-def ataque_frequencia():
-    titulo("ATAQUE: análise de frequência na César")
-    texto = input("Texto [Enter = contrato da TechSecure]: ").strip()
-
-    if texto == "":
-        texto = CONTRATO
-
-    chave_secreta = random.randint(1, 25)
-    cifrado = cifrar_cesar(texto, chave_secreta)
-    print(f"\n  O invasor interceptou ({len(cifrado)} letras): {cifrado[:60]}...\n")
-
-    frequencias = contar_frequencias(cifrado)
-    print("  Letra   No cifrado                 Em português")
-
-    for letra in ALFABETO:
-        no_cifrado = frequencias[letra]
-        em_portugues = FREQUENCIAS_PORTUGUES[letra]
-        barra1 = "#" * round(no_cifrado)
-        barra2 = "#" * round(em_portugues)
-        print(f"    {letra}   {no_cifrado:5.1f}% {barra1:20} {em_portugues:5.1f}% {barra2}")
-
-    letra = letra_mais_frequente(cifrado)
-    chave, decifrado = quebrar_cesar_por_frequencia(cifrado)
-
-    print(f"\n  A letra mais comum no cifrado é {letra}; em português é A.")
-    print(f"  Então a chave provável é {letra} - A = {chave}")
-    print("  Chave sorteada:", chave_secreta)
-    print(f"\n  Texto decifrado: {decifrado[:120]}...")
-
-
 OPCOES = {
     "1": cesar,
     "2": substituicao,
@@ -244,9 +155,6 @@ OPCOES = {
     "6": transposicao,
     "7": fluxo,
     "8": todas,
-    "9": ataque_cesar,
-    "10": ataque_afim,
-    "11": ataque_frequencia,
 }
 
 
