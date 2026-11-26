@@ -1,0 +1,130 @@
+
+==============================================================================
+1. Geração do contrato.pdf e da versão com 1 caractere alterado
+==============================================================================
+Tamanho dos arquivos: 3927 bytes (iguais)
+Posição alterada: byte 2087  '4' (0x34 = 00110100) -> '9' (0x39 = 00111001)
+Bytes diferentes: 1 | bits diferentes na entrada: 3
+
+==============================================================================
+2. Hash(documento original) x Hash(documento modificado)
+==============================================================================
+md5        
+  original:   0b11aefcb453c5b32b51ae0caee6f0b9
+  modificado: 1bbe7fb94e576aaf49c570ba643b4dd6
+  -> 69/128 bits diferentes (53.9%)  DIFERENTES
+sha1       
+  original:   51c33861ef830794af98ff1c41da5be1793cfa94
+  modificado: 026d7b6fabdaafc9cf6c98eedfa8d3b379144d36
+  -> 71/160 bits diferentes (44.4%)  DIFERENTES
+sha224     
+  original:   62485f71594d469c582e36f6930c5adb56c6625a7910dacc2d97b889
+  modificado: c3f06d5b5d739a9c4ad5a456c5859638a4aa316b4d8b66bbcb8cff25
+  -> 106/224 bits diferentes (47.3%)  DIFERENTES
+sha256     
+  original:   a748505471402858a1dbefc11bdbef2fec0f90234192fdc440e13c5bb4fd45d7
+  modificado: 83cbbcf6d9aa724599cd9a957501fe4c3779aa327b51812dce99dcd5499eeda2
+  -> 128/256 bits diferentes (50.0%)  DIFERENTES
+sha384     
+  original:   8ac528da6bb4aa3026c6b1bab814111c0d82a56b1cc4f9a08c85497740e5a583a9ec1b5dffb0d21c0770cc4fc1b58c20
+  modificado: cefdcf4323851b2e3226161bc114652ebece4c120809f3556f7849fc19ec2c70a97bffb7f484c3cd0b28a315b45bceff
+  -> 178/384 bits diferentes (46.4%)  DIFERENTES
+sha512     
+  original:   abaedb85d3abbf143cb43e39ea37ef1d6f989341e4b86946b9987e01a06137008604855c3b7b378f4d8fcdad8c66e641425c16de77cd60d2e900afdfc4a52bb3
+  modificado: 64b6226edb153aa34e01088d736bf2841047542908deaf0fb80c0f0dddc0de8ff5f1379d813a18b579e64f996a804468433748c37509fc2c1e1526356677ee05
+  -> 262/512 bits diferentes (51.2%)  DIFERENTES
+sha512_256 
+  original:   1e83d6af7eee35320b3674c6b2160f664ca4ebb3af3b2bc903c145d8885cb9c3
+  modificado: 571b3987ee32494e55c09051e7e4b8307230210441ba127953e924eaa709debb
+  -> 132/256 bits diferentes (51.6%)  DIFERENTES
+sha3_224   
+  original:   91ec03ec93641b809caabda134ffcb06226882f6af9e31c814943623
+  modificado: 7e65fc73a0bd932a3a132dfb6748d6860f79138914a48cd824fbbcd5
+  -> 119/224 bits diferentes (53.1%)  DIFERENTES
+sha3_256   
+  original:   ab576ce5aa2d717cbbfc23ed3b8a92057f7d32734b6cac55ea847fde5629755c
+  modificado: 318992aa9a6960216b46f70ce497f543c028867e0d371ad8f77eab6540c24dc1
+  -> 140/256 bits diferentes (54.7%)  DIFERENTES
+sha3_384   
+  original:   aca94dfb1418be289185f023b8579c23d9b281b6d4627a98e12881dfb91da62979c678dd4118ea9932e569f4270745ca
+  modificado: ce4f6a307a954584e78326f9a8db6eb2e05a560a7c9c50b95ccc4e4c0aeadbd0372c774ef1c02ce1b19141c00a207aee
+  -> 204/384 bits diferentes (53.1%)  DIFERENTES
+sha3_512   
+  original:   d65ca5a4e23132baf24f6c843dc64463546f53770e9426433b365ac544aa9a90ffd416c456c9f76a519c98353d81f7eb35b9343805979892aaf1c96f1978604c
+  modificado: 10ddbb334844e973b49a4538044363c5a1da777a6b08020733e0bde219a516768617337d49b38a88c7015ae5c7ea003dc40cf683e519c5c0fe8bbf10f93826a5
+  -> 267/512 bits diferentes (52.1%)  DIFERENTES
+
+==============================================================================
+3. Efeito avalanche (1000 mensagens, 1 bit invertido em cada)
+==============================================================================
+md5       média  63.90/128 bits = 49.92%  desvio 5.65  [min 45, max 81]
+sha1      média  80.20/160 bits = 50.13%  desvio 6.35  [min 59, max 99]
+sha256    média 127.83/256 bits = 49.93%  desvio 7.99  [min 103, max 152]
+sha512    média 256.25/512 bits = 50.05%  desvio 11.36  [min 227, max 299]
+sha3_256  média 127.85/256 bits = 49.94%  desvio 8.16  [min 103, max 154]
+
+==============================================================================
+4. Ataque do aniversário em SHA-256 truncado
+==============================================================================
+16 bits: média 367 tentativas (esperado ≈ 321) | pré-imagem exigiria ≈ 65,536
+   ex.: 'Contrato SecureDocs - versao 148b2758d7ab7928' e 'Contrato SecureDocs - versao e3d484087de8a234' -> ba95
+20 bits: média 1,512 tentativas (esperado ≈ 1,283) | pré-imagem exigiria ≈ 1,048,576
+   ex.: 'Contrato SecureDocs - versao 42930b33a81ad477' e 'Contrato SecureDocs - versao baa172acac33f644' -> 77074
+24 bits: média 6,933 tentativas (esperado ≈ 5,134) | pré-imagem exigiria ≈ 16,777,216
+   ex.: 'Contrato SecureDocs - versao b7d52dcef2aaaaf0' e 'Contrato SecureDocs - versao 8f8b7281d0ae95b4' -> 88f9d2
+28 bits: média 20,428 tentativas (esperado ≈ 20,534) | pré-imagem exigiria ≈ 268,435,456
+   ex.: 'Contrato SecureDocs - versao a8bb3cd3e160a1c9' e 'Contrato SecureDocs - versao f8a62a4dcc637e30' -> 60d1765
+32 bits: média 83,288 tentativas (esperado ≈ 82,137) | pré-imagem exigiria ≈ 4,294,967,296
+   ex.: 'Contrato SecureDocs - versao 5b9c525085c6cb83' e 'Contrato SecureDocs - versao 42ee62622fa142aa' -> 21e3dcbc
+
+==============================================================================
+5. Colisões REAIS – mesmo hash, contratos diferentes
+==============================================================================
+[MD5] arquivos de 648 bytes, 8 bytes diferentes
+   A mostra: CONTRATO Nº 2026/0457 – Cláusula 2ª: valor total de R$ 48.500,00 (quar...
+   B mostra: CONTRATO Nº 2026/0457 – Cláusula 2ª: valor total de R$ 98.500,00 (nove...
+   md5       IGUAL      07bb59b30f6fba7b4d8555a582c5b9cf… / 07bb59b30f6fba7b4d8555a582c5b9cf…
+   sha1      diferente  d85b1581ec3b7806715c80b6bbc26d83… / 6572bd47374aa302e92f56b86d043021…
+   sha256    diferente  5d6f7b075970eee15bf2ff9eb334a632… / 7a830ee35702456223f70d2f2f58e953…
+   sha3_256  diferente  6387afcff4f713ea432af0702ecb0a0c… / d6fd144c41cccdecffe3bf83e18ca5a4…
+[SHA1] arquivos de 904 bytes, 62 bytes diferentes
+   A mostra: CONTRATO Nº 2026/0457 – Cláusula 2ª: valor total de R$ 48.500,00 (quar...
+   B mostra: CONTRATO Nº 2026/0457 – Cláusula 2ª: valor total de R$ 98.500,00 (nove...
+   md5       diferente  7fa75b655988341b6b7f0a6d3d52cc73… / 029535b3244afb31cf1722258e4930c7…
+   sha1      IGUAL      f03a1b119b7ca375e0f2144fb40acbe4… / f03a1b119b7ca375e0f2144fb40acbe4…
+   sha256    diferente  66c6133b72ec098714ebbdfb1113b00d… / aace75eec5d25ca4c22d25e5763f7828…
+   sha3_256  diferente  ec78b60e77fb73cf7061c42ff6d069d1… / 6ae49d4af06243686446fc461be6a413…
+
+==============================================================================
+6. Ataque de extensão de comprimento (H(segredo || msg))
+==============================================================================
+md5     tag forjada aceita? True
+sha1    tag forjada aceita? True
+sha256  tag forjada aceita? True
+sha512  tag forjada aceita? True
+msg forjada (repr): b'usuario=cliente42&doc=contrato.pdf&acao=ler\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\xf8&acao=excluir'
+
+==============================================================================
+7. Por que só o hash não basta: atacante recalcula o hash; HMAC detecta
+==============================================================================
+Hash enviado junto (substituído pelo atacante): 83cbbcf6d9aa724599cd9a957501fe4c3779aa327b51812dce99dcd5499eeda2 -> verificação PASSA (falso positivo!)
+HMAC-SHA256 recebido (original): 0ec96b90e61c02f30fda04c52527ab154d9a9b20ca63327ce27babbaa27ba962
+HMAC-SHA256 recalculado no destino:   4e367452fbf0d5bffe7b7ac3f7a62820d1d332fcc22c33a33d4abe0ce84a4a03 -> FALHA: alteração detectada
+
+==============================================================================
+8. Manifesto de integridade do repositório SecureDocs
+==============================================================================
+Antes : {'manifesto_autentico': True, 'integros': ['contrato.pdf', 'estrategia_2027.txt', 'relatorio_financeiro.txt'], 'alterados': [], 'ausentes': [], 'novos': []}
+Depois: {'manifesto_autentico': True, 'integros': ['estrategia_2027.txt', 'relatorio_financeiro.txt'], 'alterados': ['contrato.pdf'], 'ausentes': [], 'novos': []}
+
+==============================================================================
+9. Desempenho (KB/s) – Python puro x hashlib
+==============================================================================
+md5       Python puro    2282.7 KB/s | hashlib     819186.3 KB/s | 359x mais lento
+sha1      Python puro    1101.3 KB/s | hashlib    1974812.8 KB/s | 1,793x mais lento
+sha256    Python puro     496.2 KB/s | hashlib    1775040.2 KB/s | 3,577x mais lento
+sha512    Python puro     780.1 KB/s | hashlib     791389.2 KB/s | 1,015x mais lento
+sha3_256  Python puro     401.3 KB/s | hashlib     552575.0 KB/s | 1,377x mais lento
+
+Resultados salvos em experimentos/saida/resultados.json
+Gráficos salvos em experimentos/saida/graficos

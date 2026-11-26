@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "securedocs-hash"
+version = "1.0.0"
+description = "Biblioteca didática de funções hash (MD5, SHA-1, SHA-2, SHA-3, HMAC) em Python puro – SecureDocs, Missão 5"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+experimentos = ["reportlab", "matplotlib"]
+testes = ["pytest"]
+
+[project.scripts]
+securedocs-hash = "securedocs_hash.__main__:main"
+
+[tool.setuptools]
+packages = ["securedocs_hash"]
+
+[tool.setuptools.package-data]
+securedocs_hash = ["dados/*.bin"]
