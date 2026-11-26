@@ -1,0 +1,10 @@
+{
+  "algoritmo": "sha3_256",
+  "gerado_em": "2026-11-26T08:39:51",
+  "arquivos": {
+    "contrato.pdf": "ab576ce5aa2d717cbbfc23ed3b8a92057f7d32734b6cac55ea847fde5629755c",
+    "estrategia_2027.txt": "0c4b13441764a1bb256e68865e3edfe0411c21532a8ea8afae423d46bd4b903c",
+    "relatorio_financeiro.txt": "1112b8342b3371799dabe16787badc2d52ab61073d90960320fd0f3260c5eb93"
+  },
+  "hmac_sha256": "e49e608c0824be201830d467380d3a77f699648788f64a66a89c16ac3458a2d9"
+}
